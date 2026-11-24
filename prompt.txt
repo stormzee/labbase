@@ -1,0 +1,219 @@
+# PROJECT: VIRTUAL SCIENCE LAB — WONDER-SNAP-INSPIRED GESTURE INTERACTION PROTOTYPE
+
+## Objective
+
+Develop a browser-based, gesture-controlled 3D chemistry laboratory inspired by the interaction approach of the open-source WonderSnap project:
+
+https://github.com/AkbarSheikh-debug/wondersnap
+
+The objective is to adapt its natural hand-interaction concept to a functional chemistry laboratory.
+
+Do not simply clone WonderSnap. Build a clean, modular application that uses gesture recognition to manipulate laboratory apparatus and perform chemistry experiments.
+
+## 1. Core concept
+
+Create a realistic 3D chemistry laboratory in which students can use their webcam and hand movements to interact with laboratory equipment.
+
+The initial experiment must be acid-base titration.
+
+The application must also support mouse, keyboard and touchscreen interaction when webcam access is unavailable.
+
+## 2. Technology stack
+
+- React
+- TypeScript
+- Vite
+- Three.js
+- React Three Fiber
+- Drei
+- MediaPipe Tasks Vision / Hand Landmarker
+- Rapier physics
+- Zustand
+- Tailwind CSS
+
+Use a modular architecture.
+
+Do not use a particle-only representation for laboratory apparatus. Equipment must be represented by solid, interactive 3D objects.
+
+## 3. Hand-tracking system
+
+Implement webcam-based hand tracking using MediaPipe Hand Landmarker.
+
+Requirements:
+
+- Detect up to two hands where practical.
+- Track 21 hand landmarks.
+- Process camera frames locally in the browser.
+- Avoid transmitting webcam footage to the backend.
+- Provide a camera permission and activation interface.
+- Display a clear tracking status.
+- Handle camera permission denial and tracking failure.
+- Provide adjustable gesture sensitivity.
+- Smooth noisy landmark movements.
+- Implement gesture debouncing to prevent accidental repeated actions.
+
+## 4. Gesture recognition
+
+Implement a modular gesture recognition engine.
+
+Initial gestures:
+
+- Pinch: grab/select apparatus.
+- Open hand: release selected apparatus.
+- Point: select an object or interface control.
+- Fist: activate a configurable interaction.
+- Wrist rotation: rotate selected apparatus.
+- Two-hand movement: zoom or manipulate the laboratory view.
+
+Gestures must be configurable and should not be tightly coupled to individual experiments.
+
+## 5. Object manipulation
+
+Students must be able to:
+
+- Select laboratory equipment.
+- Pick it up.
+- Move it around the laboratory.
+- Rotate it.
+- Place it on a workbench.
+- Release it.
+- Select and inspect individual equipment components.
+
+Implement appropriate object snapping and placement constraints.
+
+For example, a burette should be positioned correctly on a stand rather than freely floating in space.
+
+Use raycasting, interaction state management and physics constraints where appropriate.
+
+## 6. Three-dimensional laboratory
+
+Create a laboratory environment containing:
+
+- Workbench.
+- Burette.
+- Pipette.
+- Conical flask.
+- Beaker.
+- Measuring cylinder.
+- Retort stand and clamp.
+- Wash bottle.
+- Chemical reagent containers.
+- Laboratory safety equipment.
+
+Models should be optimised for ordinary school laptops.
+
+Use reusable apparatus components and appropriate materials.
+
+## 7. Titration simulation
+
+Implement a first functional acid-base titration experiment.
+
+Students should be able to:
+
+1. Select the required apparatus.
+2. Arrange the apparatus.
+3. Fill the burette.
+4. Measure and transfer solution.
+5. Add an indicator.
+6. Control the liquid transfer.
+7. Observe the endpoint.
+8. Record readings.
+9. Calculate the titre and unknown concentration.
+
+The simulation must maintain a clear separation between:
+
+- Chemistry calculations.
+- Liquid-volume state.
+- Visual liquid representation.
+- User interaction.
+
+The chemistry engine must be authoritative for transferred volumes and experimental outcomes.
+
+## 8. Interaction modes
+
+Provide:
+
+- Webcam hand-tracking mode.
+- Mouse and keyboard mode.
+- Touchscreen mode where practical.
+
+All essential experiment actions must remain possible without a webcam.
+
+## 9. User interface
+
+Create a modern, student-friendly laboratory interface.
+
+Include:
+
+- Laboratory scene.
+- Camera activation controls.
+- Gesture status panel.
+- Equipment selection panel.
+- Experiment instructions.
+- Measurement display.
+- Experiment progress indicator.
+- Reset experiment control.
+- Help and gesture guide.
+
+## 10. Performance
+
+Optimise for ordinary Windows laptops.
+
+Requirements:
+
+- Limit unnecessary 3D objects and draw calls.
+- Use optimised geometry and textures.
+- Support lower rendering resolution.
+- Avoid expensive continuous computations.
+- Process hand tracking efficiently.
+- Provide graceful degradation when GPU resources are limited.
+
+Do not require VR headsets.
+
+## 11. Testing
+
+Implement automated tests for:
+
+- Gesture classification.
+- Gesture debouncing.
+- Object selection.
+- Pick-up and release.
+- Apparatus movement.
+- Apparatus placement.
+- Mouse and keyboard fallback.
+- Chemistry calculations.
+- Liquid-volume conservation.
+- Camera permission failure.
+
+## 12. Development approach
+
+Develop in milestones:
+
+Milestone 1: Build the 3D laboratory environment.
+
+Milestone 2: Integrate MediaPipe hand tracking.
+
+Milestone 3: Implement gesture classification and state management.
+
+Milestone 4: Implement apparatus selection and manipulation.
+
+Milestone 5: Implement the titration experiment.
+
+Milestone 6: Integrate chemistry calculations and liquid-volume simulation.
+
+Milestone 7: Add mouse and keyboard alternatives.
+
+Milestone 8: Optimise and test on ordinary Windows laptops.
+
+Before writing substantial code:
+
+1. Propose the architecture.
+2. Define the project folder structure.
+3. Identify reusable WonderSnap concepts and components.
+4. Identify components that must be developed independently.
+5. Define the interaction state machine.
+6. Establish performance and testing criteria.
+
+Do not claim that a feature is complete until it has been implemented and tested.
+
+The ultimate acceptance criterion is a student successfully completing a titration experiment using hand gestures, with the ability to switch to mouse and keyboard controls at any point.

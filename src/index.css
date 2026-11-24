@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  html {
+    background: #06100f;
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+    background: #06100f;
+    color: #d8efe9;
+    font-family: 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: rgba(116, 185, 174, 0.35);
+    color: #ffffff;
+  }
+
+  canvas {
+    display: block;
+    touch-action: none;
+  }
+}
+
+.lab-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+}
+
+.lab-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(116, 185, 174, 0.28) transparent;
+}
+
+.lab-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.lab-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lab-scroll::-webkit-scrollbar-thumb {
+  background: rgba(116, 185, 174, 0.28);
+  border-radius: 999px;
+}
+
+.lab-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(116, 185, 174, 0.45);
+}
+
+.lab-range {
+  height: 4px;
+  appearance: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2c6f67, #74b9ae 55%, #f2b84b);
+  outline: none;
+}
+
+.lab-range::-webkit-slider-thumb {
+  appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  border: 2px solid #06100f;
+  background: #f8f3e6;
+  box-shadow: 0 0 0 1px rgba(116, 185, 174, 0.5), 0 2px 8px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.lab-range::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  border: 2px solid #06100f;
+  background: #f8f3e6;
+  box-shadow: 0 0 0 1px rgba(116, 185, 174, 0.5);
+  cursor: pointer;
+}
+
+.lab-range:focus-visible {
+  outline: 2px solid rgba(116, 185, 174, 0.6);
+  outline-offset: 4px;
+}
+
+.gesture-cursor {
+  will-change: transform, opacity;
+}
+
+.gesture-cursor__ring {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid rgba(116, 185, 174, 0.92);
+  background: radial-gradient(circle, rgba(116, 185, 174, 0.14), transparent 70%);
+  box-shadow: 0 0 18px rgba(116, 185, 174, 0.35);
+  transition:
+    width 120ms ease,
+    height 120ms ease,
+    border-color 120ms ease,
+    background 120ms ease;
+}
+
+.gesture-cursor__dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: #f2b84b;
+  box-shadow: 0 0 10px rgba(242, 184, 75, 0.7);
+}
+
+.gesture-cursor__label {
+  position: absolute;
+  left: 50%;
+  top: 52px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  border: 1px solid rgba(116, 185, 174, 0.25);
+  background: rgba(6, 16, 15, 0.82);
+  padding: 2px 7px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #a9d8d0;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.gesture-cursor--pinch .gesture-cursor__ring {
+  width: 28px;
+  height: 28px;
+  border-color: rgba(242, 184, 75, 0.95);
+  background: radial-gradient(circle, rgba(242, 184, 75, 0.28), transparent 70%);
+  box-shadow: 0 0 22px rgba(242, 184, 75, 0.45);
+}
+
+.gesture-cursor--pinch .gesture-cursor__label {
+  border-color: rgba(242, 184, 75, 0.4);
+  color: #f7cf72;
+}
+
+.gesture-cursor--point .gesture-cursor__ring {
+  border-style: dashed;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.toast-item {
+  animation: toast-in 220ms ease-out;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-item {
+    animation: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .lab-canvas {
+    height: 100% !important;
+  }
+}

@@ -1,0 +1,18 @@
+services:
+  labbase:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: labbase:local
+    container_name: labbase
+    ports:
+      - "${LABBASE_PORT:-8090}:80"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1/healthz || exit 1"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
